@@ -1,0 +1,48 @@
+{volist  name="lists" id="vo"}
+<tr class="long-td">
+    <td>{$vo['id']}</td>
+    <td>{$vo['username']}</td>
+    <td>
+        <img src="{$vo['portrait']}" class="img-circle" style="width:35px;height:35px" onerror="this.src='/static/admin/images/head_default.gif'"/>
+    </td>
+    <td>{$vo['title']}</td>
+    <td>{$vo['loginnum']}</td>
+    <td>{$vo['last_login_ip']}</td>
+    <td>{$vo['last_login_time']|date="Y-m-d H:i:s",###}</td>
+    <td>{$vo['real_name']}</td>
+    <td>
+        <!--普通管理员-->
+        {if condition="$vo['id'] neq 1"}
+            {switch name=$vo['status']}
+            {case value='1'}
+            <a href="javascript:void(0);" statusurl="{:url('status',['id'=>$vo['id'],'status'=>0])}" thisid="{$vo['id']}"  onclick="change_status(this);">
+                <div id="statushtml{$vo['id']}"><span class="label label-info">开启</span></div>
+            </a>
+            {/case}
+            {default /}
+            <a href="javascript:void(0);" statusurl="{:url('status',['id'=>$vo['id'],'status'=>1])}" thisid="{$vo['id']}" onclick="change_status(this);">
+                <div id="statushtml{$vo['id']}"><span class="label label-danger">禁用</span></div>
+            </a>
+            {/switch}
+        {else /}
+            <!--超级管理员-->
+            <a class="red" href="javascript:;" >
+                <div><span class="label label-info">开启</span></div>
+            </a>
+        {/if}
+    </td>
+    <td>
+        {if condition="$vo['id'] neq 1"}
+            <a href="javascript:;" editurl="{:url('edit',['id'=>$vo['id']])}" thisid="{$vo['id']}" onclick="edit_data(this)"  class="btn btn-primary btn-xs btn-outline"><i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;
+            <a href="javascript:;" delurl="{:url('del')}" thisid="{$vo['id']}" onclick="del_data(this)" class="btn btn-danger btn-xs btn-outline"><i class="fa fa-trash-o"></i> 删除</a>
+        {else /}
+            {if condition="$Think.session.uid eq 1"/}
+                <a href="javascript:;" editurl="{:url('edit',['id'=>$vo['id']])}" thisid="{$vo['id']}" onclick="edit_data(this)"  class="btn btn-primary btn-xs btn-outline"><i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;
+            {/if}
+        {/if}
+    </td>
+</tr>
+{/volist}
+<!--总页数-->
+<input id="allpagecount" type="hidden" value="{$allpage}">
+<input id="count" type="hidden" value="{$count}">

@@ -1,0 +1,37 @@
+{volist name="lists" id="vo"}
+    <tr class="long-td">
+        <td>{$vo['id']}</td>
+        <td>{$vo['title']}</td>
+        <td>{$vo['link_url']}</td>
+        <td>{$vo['name']}</td>
+        <td><img src="{$vo['images']}" style="height: 30px" onerror="this.src='/static/admin/images/no_img.jpg'"/></td>
+        <td>{$vo['start_date']}</td>
+        <td>{$vo['end_date']}</td>
+        {include file="public/status" /}
+        <!--
+        <td>
+            {switch name=$vo['status']}
+            {case value='1'}
+            <a href="javascript:void(0);" statusurl="{:url('status',['id'=>$vo['id'],'status'=>0])}" thisid="{$vo['id']}"  onclick="change_status(this);">
+                <div id="statushtml{$vo['id']}"><span class="label label-info">开启</span></div>
+            </a>
+            {/case}
+            {default /}
+            <a href="javascript:void(0);" statusurl="{:url('status',['id'=>$vo['id'],'status'=>1])}" thisid="{$vo['id']}" onclick="change_status(this);">
+                <div id="statushtml{$vo['id']}"><span class="label label-danger">禁用</span></div>
+            </a>
+            {/switch}
+        </td>-->
+        <td>
+            <a href="javascript:;" editurl="{:url('edit',['id'=>$vo['id']])}" thisid="{$vo['id']}" onclick="edit_data(this)"  class="btn btn-primary btn-xs btn-outline"><i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;
+            <a href="javascript:;" delurl="{:url('del')}" thisid="{$vo['id']}" onclick="del_data(this)" class="btn btn-danger btn-xs btn-outline"><i class="fa fa-trash-o"></i> 删除</a>
+        </td>
+    </tr>
+{/volist}
+<!--总页数-->
+<input id="allpagecount" type="hidden" value="{$allpage}">
+<!--总记录数-->
+<input id="count" type="hidden" value="{$count}">
+
+
+

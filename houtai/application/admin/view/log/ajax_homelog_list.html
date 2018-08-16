@@ -1,0 +1,15 @@
+{volist name="lists" id="vo"}
+<tr class="long-td">
+    <td>{$vo['id']}</td>
+    <td>{$user[$vo['user_id']]['account']}</td>
+    <td>{$vo['do_content']}</td>
+    <td>{:long2ip($vo['click_ip'])}</td>
+    <td>{$vo['ipaddrcountry']}{$vo['ipaddrarea']}</td>
+    <td>{$vo['os_broswer']}</td>
+    <td>{$vo['click_time']|date="Y-m-d H:i:s",###}</td>
+</tr>
+{/volist}
+<!--总页数-->
+<input id="allpagecount" type="hidden" value="{$allpage}">
+<!--总记录数-->
+<input id="count" type="hidden" value="{$count}">

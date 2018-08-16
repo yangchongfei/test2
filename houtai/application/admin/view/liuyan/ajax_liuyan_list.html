@@ -1,0 +1,20 @@
+{volist name="lists" id="vo"}
+<tr class="long-td">
+    <td>{$vo['id']}</td>
+    <td>{$vo['uname']}</td>
+    <td>{$vo['email']}</td>
+    <td>{$vo['content']}</td>
+    <td>{if !empty($vo['respondcontent'])}已回复{/if}</td>
+    <td>{$vo['os']}--{$vo['address']}</td>
+    <td>{$vo['update_time']}</td>
+    <td>
+        <a href="javascript:;" editurl="{:url('respondLiuyan',['id'=>$vo['id'],'email'=>$vo['email'],'uname'=>$vo['uname'],'content'=>$vo['content'],'respondcontent'=>$vo['respondcontent']])}" onclick="edit_data(this)" class="btn btn-primary btn-xs btn-outline">
+            <i class="fa fa-paste"></i> 回复</a>&nbsp;&nbsp;
+        <a href="javascript:;" delurl="{:url('del')}" thisid="{$vo['id']}" onclick="del_data(this)" class="btn btn-danger btn-xs btn-outline"><i class="fa fa-trash-o"></i> 删除</a>
+    </td>
+</tr>
+{/volist}
+<!--总页数-->
+<input id="allpagecount" type="hidden" value="{$allpage}">
+<!--总记录数-->
+<input id="count" type="hidden" value="{$count}">

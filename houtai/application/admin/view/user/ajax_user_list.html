@@ -1,0 +1,33 @@
+{volist  name="lists" id="vo"}
+<tr class="long-td">
+    <td>{$vo['id']}</td>
+    <td>{$vo['account']}</td>
+    <td>{$vo['nickname']}</td>
+    <td>
+        {switch name=$vo['sex']}
+            {case value='1}男{/case}
+            {case value='1}女{/case}
+            {default /}未知
+        {/switch}
+    </td>
+    <td>{$vo['group_name']}</td>
+    <td>
+        <img src="/uploads/face/{$vo['head_img']}" class="img-circle" style="width:35px;height:35px" onerror="this.src='/static/admin/images/head_default.gif'"/>
+    </td>
+    <td>{$vo['integral']}</td>
+    <td>{$vo['money']}</td>
+    <td>{$vo['mobile']}</td>
+    <td>{$vo['login_num']}</td>
+    {include file="public/status" /}
+
+    <td>{$vo['create_time']}</td>
+    <td>
+        <a href="javascript:;" editurl="{:url('edit',['id'=>$vo['id']])}" thisid="{$vo['id']}" onclick="edit_data(this)"  class="btn btn-primary btn-xs btn-outline"><i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;
+        <a href="javascript:;" delurl="{:url('del')}" thisid="{$vo['id']}" onclick="del_data(this)" class="btn btn-danger btn-xs btn-outline"><i class="fa fa-trash-o"></i> 删除</a>
+    </td>
+</tr>
+{/volist}
+<!--总页数-->
+<input id="allpagecount" type="hidden" value="{$allpage}">
+<!--总记录数-->
+<input id="count" type="hidden" value="{$count}">

@@ -1,0 +1,23 @@
+{volist name="lists" id="vo"}
+<tr class="long-td">
+    <td>{$vo.id}</td>
+    <td>{$vo.name}</td>
+    <td>{$vo.orderby}</td>
+    <!--状态-->
+    {include file="public/status" /}
+    <td>{$vo.create_time}</td>
+    <td>{$vo.update_time}</td>
+    <td>
+        <a href="javascript:;" editurl="{:url('edit',['id'=>$vo['id']])}" thisid="{$vo['id']}" onclick="edit_data(this)"  class="btn btn-primary btn-xs btn-outline"><i class="fa fa-paste"></i> 编辑</a>&nbsp;&nbsp;
+        <a href="javascript:;" delurl="{:url('del')}" thisid="{$vo['id']}" onclick="del_data(this)" class="btn btn-danger btn-xs btn-outline"><i class="fa fa-trash-o"></i> 删除</a>
+    </td>
+</tr>
+
+{/volist}
+<!--总页数-->
+<input id="allpagecount" type="hidden" value="{$allpage}">
+<!--总记录数-->
+<input id="count" type="hidden" value="{$count}">
+
+
+

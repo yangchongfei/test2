@@ -1,0 +1,13 @@
+<td>
+    {switch name=$vo['status']}
+    {case value='1'}
+    <a href="javascript:void(0);" statusurl="{:url('status',['id'=>$vo['id'],'status'=>0])}" thisid="{$vo['id']}"  onclick="change_status(this);">
+        <div id="statushtml{$vo['id']}"><span class="label label-info">开启</span></div>
+    </a>
+    {/case}
+    {default /}
+    <a href="javascript:void(0);" statusurl="{:url('status',['id'=>$vo['id'],'status'=>1])}" thisid="{$vo['id']}" onclick="change_status(this);">
+        <div id="statushtml{$vo['id']}"><span class="label label-danger">禁用</span></div>
+    </a>
+    {/switch}
+</td>

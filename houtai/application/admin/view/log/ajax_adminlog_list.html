@@ -1,0 +1,21 @@
+{volist name="lists" id="vo"}
+<tr class="long-td">
+    <td>{$vo['id']}</td>
+    <td>{if condition="$vo['admin_id'] gt 0"}{$vo['admin_id']}--{$vo['admin_name']}{else /}管理员{/if}</td>
+    <td>{$vo['description']}</td>
+    <td>{$vo['ip']}</td>
+    <td>{$vo['ipaddrcountry']}{$vo['ipaddrarea']}</td>
+    <td>
+        {switch name=$vo['status']}
+        {case value='1'}<span>操作成功<span>{/case}
+        {default /}
+                <span style="color: red">操作失败<span>
+        {/switch}
+    </td>
+    <td>{$vo['create_time']}</td>
+</tr>
+{/volist}
+<!--总页数-->
+<input id="allpagecount" type="hidden" value="{$allpage}">
+<!--总记录数-->
+<input id="count" type="hidden" value="{$count}">
